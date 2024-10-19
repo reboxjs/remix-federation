@@ -20,7 +20,6 @@ export default function App() {
         <Outlet />
         <ScrollRestoration />
         <FederationScripts />
-        <LiveReload />
         <Scripts />
       </body>
     </html>

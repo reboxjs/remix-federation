@@ -27,7 +27,7 @@ export type FederationConfig = {
 } & NativeFederationConfig;
 
 /**
- * Creates a Vite plugin that implements native module federation for remix
+ * Creates a Vite plugin that implements native module federation for Remix
  *
  * @param federationConfig - The federation config.
  *
@@ -52,12 +52,12 @@ export default async function vitePluginRemixFederation(
 
     return federationBuilder.init({
       options: resolvedOptions,
-      adapter: buildAdapter,
+      adapter: buildAdapter, // Ensuring the adapter function is passed correctly
     });
   }
 
   // Initial init to get externals for the externalize plugin
-  await initFederation(federationConfig?.adapter!);
+  await initFederation(federationConfig?.adapter ?? createViteAdapter([]), true); // Fix: Ensure adapter fallback is correctly provided
 
   const externals = [...federationBuilder.externals, ...defaultExternals];
   const sharedPlugins: Plugin[] = [

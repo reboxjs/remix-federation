@@ -8,7 +8,7 @@ import { parse } from "path";
 import { InlineConfig, Plugin, Rollup, build } from "vite";
 import { defaultExternals } from "./plugin";
 
-// A Vite based build adapter for @softarc/native-federation
+// A Vite-based build adapter for @softarc/native-federation
 export function createViteAdapter(plugins: Plugin[]): BuildAdapter {
   return async (options: BuildAdapterOptions): Promise<BuildResult[]> => {
     const { entryPoints, outdir, external, hash } = options;

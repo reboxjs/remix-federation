@@ -1,5 +1,5 @@
 import type { AppConfig } from "@remix-run/dev";
-import { unstable_vitePlugin as remix } from "@remix-run/dev";
+import { vitePlugin as remix } from "@remix-run/dev";
 import { defineConfig } from "vite";
 import tsconfigPaths from "vite-tsconfig-paths";
 import remixFederation from "../../packages/remix-federation/src/vite";
@@ -27,6 +27,14 @@ const federationConfig = {
 export default defineConfig({
   optimizeDeps: {
     include: ["react-dom/client", "react/jsx-dev-runtime"],
+  },
+  ssr: {
+    noExternal: ['virtual:server-manifest'], // Ensure it's not externalized in SSR
+  },
+  build: {
+    rollupOptions: {
+      external: ['virtual:server-manifest'],
+    },
   },
   plugins: [tsconfigPaths(), remix(remixConfig), remixFederation(federationConfig)],
 });

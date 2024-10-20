@@ -2,7 +2,7 @@ import type { AppConfig } from "@remix-run/dev";
 import { vitePlugin as remix } from "@remix-run/dev";
 import { defineConfig } from "vite";
 import tsconfigPaths from "vite-tsconfig-paths";
-import federation from "@originjs/vite-plugin-federation";
+import { federation } from '@module-federation/vite'
 
 const remixConfig: AppConfig = {
   ignoredRouteFiles: ["**/.*"],
@@ -14,11 +14,35 @@ const federationConfig = {
     "./widget1": "./app/components/Widget1",
   },
   manifest: true,
-  shared: [
-    // "react",
-    // "react-dom",
-    // "@remix-run/react"
-  ],
+  shared: { 
+        // 'react/': {
+        //   singleton: true,
+        // },
+        // react: {
+        //   singleton: true,
+        // },
+        // 'react-dom/': {
+        //   singleton: true,
+        // },
+        // 'react-dom': {
+        //   singleton: true,
+        // },
+        // 'react-router-dom': {
+        //   singleton: true,
+        // },
+        // 'react-router-dom/': {
+        //   singleton: true,
+        // },
+        // '@remix-run/router': {
+        //   singleton: true,
+        // },
+        // '@remix-run/router/': {
+        //   singleton: true,
+        // },
+        // '@remix-run/react/': {
+        //   singleton: true,
+        // },
+  },
 };
 
 export default defineConfig({
@@ -34,5 +58,5 @@ export default defineConfig({
     //   external: ['virtual:server-manifest'],
     // },
   },
-  plugins: [tsconfigPaths(), remix(remixConfig), federation(federationConfig)],
+  plugins: [tsconfigPaths(),  remix(remixConfig), federation(federationConfig), ],
 });

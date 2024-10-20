@@ -75,9 +75,9 @@ importers:
 
   apps/host:
     dependencies:
-      '@originjs/vite-plugin-federation':
-        specifier: ^1.3.6
-        version: 1.3.6
+      '@module-federation/vite':
+        specifier: ^1.1.3
+        version: 1.1.3(@types/node@20.8.7)(rollup@4.24.0)
       '@remix-run/css-bundle':
         specifier: ~2.10.1
         version: 2.10.3
@@ -142,9 +142,9 @@ importers:
 
   apps/remote1:
     dependencies:
-      '@originjs/vite-plugin-federation':
-        specifier: ^1.3.6
-        version: 1.3.6
+      '@module-federation/vite':
+        specifier: ^1.1.3
+        version: 1.1.3(@types/node@20.8.7)(rollup@4.24.0)
       '@remix-run/css-bundle':
         specifier: ~2.10.1
         version: 2.10.3
@@ -157,6 +157,9 @@ importers:
       '@remix-run/react':
         specifier: ~2.10.1
         version: 2.10.3(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(typescript@5.2.2)
+      '@remix-run/router':
+        specifier: 1.18.0
+        version: 1.18.0
       isbot:
         specifier: ^3.6.8
         version: 3.6.8
@@ -166,6 +169,12 @@ importers:
       react-dom:
         specifier: ^18.2.0
         version: 18.2.0(react@18.2.0)
+      react-router:
+        specifier: 6.25.0
+        version: 6.25.0(react@18.2.0)
+      react-router-dom:
+        specifier: 6.25.0
+        version: 6.25.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
     devDependencies:
       '@remix-run/dev':
         specifier: ~2.10.1
@@ -907,6 +916,15 @@ packages:
   '@mdx-js/mdx@2.3.0':
     resolution: {integrity: sha512-jLuwRlz8DQfQNiUCJR50Y09CGPq3fLtmtUQfVrj79E0JWu3dvsVcxVIcfhR5h0iXu+/z++zDrYeiJqifRynJkA==}
 
+  '@module-federation/runtime@0.6.11':
+    resolution: {integrity: sha512-UTuavwCybLftAe4VT7cCqj+BVNlZwda/xmqIPAeYX14o7gkYFyA6zkxOQqfNCaDnTMR/KBk6EvE49yA6/ht9UQ==}
+
+  '@module-federation/sdk@0.6.11':
+    resolution: {integrity: sha512-Fj2ws9yL6mGAki9GdurcrIhdSg0L2Kfw7L6Dej/DidzAU4bwa3MT0s+87BPuOYFgm2UTMN3g+UrElC2NhsuulQ==}
+
+  '@module-federation/vite@1.1.3':
+    resolution: {integrity: sha512-ZY1iRcFosJfI5XRPaKoLk/rdg0HC3wVNXq1QHpT2eSiccn+GIYp43bCRZhRJ4sE/FCdGfh+ARxSAok/bEuwMZA==}
+
   '@nodelib/fs.scandir@2.1.5':
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}
     engines: {node: '>= 8'}
@@ -937,10 +955,6 @@ packages:
 
   '@originjs/vite-plugin-commonjs@1.0.3':
     resolution: {integrity: sha512-KuEXeGPptM2lyxdIEJ4R11+5ztipHoE7hy8ClZt3PYaOVQ/pyngd2alaSrPnwyFeOW1UagRBaQ752aA1dTMdOQ==}
-
-  '@originjs/vite-plugin-federation@1.3.6':
-    resolution: {integrity: sha512-tHLMjdMJFPFMSJrUuJJiv8l7OFRvM19E9O1B9dhbk+04i3RnYwE9A6oNtSUM1dnvkalzCLwZIuMpti28/tnh8g==}
-    engines: {node: '>=14.0.0', pnpm: '>=7.0.1'}
 
   '@pkgjs/parseargs@0.11.0':
     resolution: {integrity: sha512-+1VkjdD0QBLPodGrJUeqarH8VAIvQODIbwh9XpP5Syisf7YoQgsJKPNFoqqLQlu+VQ/tVSshMR6loPMn8U+dPg==}
@@ -1117,6 +1131,15 @@ packages:
     engines: {node: '>= 8.0.0'}
     peerDependencies:
       rollup: ^1.20.0||^2.0.0
+
+  '@rollup/pluginutils@5.1.2':
+    resolution: {integrity: sha512-/FIdS3PyZ39bjZlwqFnWqCOVnW7o963LtKMwQOD0NhQqw22gSr2YY1afu3FxRip4ZCZNsD5jq6Aaz6QV3D/Njw==}
+    engines: {node: '>=14.0.0'}
+    peerDependencies:
+      rollup: ^1.20.0||^2.0.0||^3.0.0||^4.0.0
+    peerDependenciesMeta:
+      rollup:
+        optional: true
 
   '@rollup/rollup-android-arm-eabi@4.24.0':
     resolution: {integrity: sha512-Q6HJd7Y6xdB48x8ZNVDOqsbh2uByBhgK8PiQgPhwkIw/HC/YX5Ghq2mQY5sRMZWHb3VsFkWooUVOZHKr7DmDIA==}
@@ -1737,6 +1760,9 @@ packages:
   define-data-property@1.1.4:
     resolution: {integrity: sha512-rBMvIzlpA8v6E+SJZoo++HAYqsLrkg7MSfIinMPFhmkorw7X+dOXVJQs+QT69zGkzMyfDnIMN2Wid1+NbL3T+A==}
     engines: {node: '>= 0.4'}
+
+  defu@6.1.4:
+    resolution: {integrity: sha512-mEQCMmwJu317oSz8CwdIOdwf3xMif1ttiM8LTufzc3g6kR+9Pe236twL8j3IYT1F7GfRgGcW6MWxzZjLIkuHIg==}
 
   delegates@1.0.0:
     resolution: {integrity: sha512-bd2L678uiWATM6m5Z1VzNCErI3jiGzt6HGY8OVICs40JQq/HALfbyNJmp0UDakEY4pMMaN0Ly5om/B1VI/+xfQ==}
@@ -2578,10 +2604,6 @@ packages:
 
   magic-string@0.25.9:
     resolution: {integrity: sha512-RmF0AsMzgt25qzqqLc1+MbHmhdx0ojF2Fvs4XnOqz2ZOBXzzkEwc/dJQZCYHAn7v1jbVOjAZfK8msRn4BxO4VQ==}
-
-  magic-string@0.27.0:
-    resolution: {integrity: sha512-8UnnX2PeRAPZuN12svgR9j7M1uWMovg/CEnIwIG0LFkXSJJe4PdfUGiTGl8V9bsBHFUtfVINcSyYxd7q+kx9fA==}
-    engines: {node: '>=12'}
 
   magic-string@0.30.12:
     resolution: {integrity: sha512-Ea8I3sQMVXr8JhN4z+H/d8zwo+tYDgHE9+5G4Wnrwhs0gaK9fXTKx0Tw5Xwsd/bCPTTZNRAdpyzvoeORe9LYpw==}
@@ -4629,6 +4651,39 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
+  '@module-federation/runtime@0.6.11':
+    dependencies:
+      '@module-federation/sdk': 0.6.11
+
+  '@module-federation/sdk@0.6.11': {}
+
+  '@module-federation/vite@1.1.3(@types/node@20.8.7)(rollup@4.24.0)':
+    dependencies:
+      '@module-federation/runtime': 0.6.11
+      '@rollup/pluginutils': 5.1.2(rollup@4.24.0)
+      defu: 6.1.4
+      estree-walker: 2.0.2
+      magic-string: 0.30.12
+      pathe: 1.1.2
+      vitest: 2.1.3(@types/node@20.8.7)
+    transitivePeerDependencies:
+      - '@edge-runtime/vm'
+      - '@types/node'
+      - '@vitest/browser'
+      - '@vitest/ui'
+      - happy-dom
+      - jsdom
+      - less
+      - lightningcss
+      - msw
+      - rollup
+      - sass
+      - sass-embedded
+      - stylus
+      - sugarss
+      - supports-color
+      - terser
+
   '@nodelib/fs.scandir@2.1.5':
     dependencies:
       '@nodelib/fs.stat': 2.0.5
@@ -4677,11 +4732,6 @@ snapshots:
   '@originjs/vite-plugin-commonjs@1.0.3':
     dependencies:
       esbuild: 0.14.54
-
-  '@originjs/vite-plugin-federation@1.3.6':
-    dependencies:
-      estree-walker: 3.0.3
-      magic-string: 0.27.0
 
   '@pkgjs/parseargs@0.11.0':
     optional: true
@@ -5197,6 +5247,14 @@ snapshots:
       estree-walker: 1.0.1
       picomatch: 2.3.1
       rollup: 2.79.1
+
+  '@rollup/pluginutils@5.1.2(rollup@4.24.0)':
+    dependencies:
+      '@types/estree': 1.0.6
+      estree-walker: 2.0.2
+      picomatch: 2.3.1
+    optionalDependencies:
+      rollup: 4.24.0
 
   '@rollup/rollup-android-arm-eabi@4.24.0':
     optional: true
@@ -5839,6 +5897,8 @@ snapshots:
       es-define-property: 1.0.0
       es-errors: 1.3.0
       gopd: 1.0.1
+
+  defu@6.1.4: {}
 
   delegates@1.0.0: {}
 
@@ -6741,10 +6801,6 @@ snapshots:
   magic-string@0.25.9:
     dependencies:
       sourcemap-codec: 1.4.8
-
-  magic-string@0.27.0:
-    dependencies:
-      '@jridgewell/sourcemap-codec': 1.5.0
 
   magic-string@0.30.12:
     dependencies:

@@ -1,6 +1,6 @@
 import type { AppConfig } from "@remix-run/dev";
 import { vitePlugin as remix } from "@remix-run/dev";
-import federation from "@originjs/vite-plugin-federation";
+import { federation } from '@module-federation/vite'
 import { defineConfig } from "vite";
 import { installGlobals } from '@remix-run/node';
 import tsconfigPaths from "vite-tsconfig-paths";

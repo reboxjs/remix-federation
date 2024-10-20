@@ -1,0 +1,5 @@
+
+
+> remote1@ build /Users/veeramarni/Documents/development/workspace/projects/research/remix-federation/apps/remote1
+> vite build && vite build --ssr
+

@@ -1,0 +1,20 @@
+
+
+> host@ build /Users/veeramarni/Documents/development/workspace/projects/research/remix-federation/apps/host
+> vite build && vite build --ssr
+
+node:fs:1665
+  const stats = binding.stat(
+                        ^
+
+Error: ENOENT: no such file or directory, stat '/Users/veeramarni/Documents/development/workspace/projects/research/remix-federation/apps/host/node_modules/@remix-run/router'
+[90m    at statSync (node:fs:1665:25)[39m
+    at Context.buildStart (file:///Users/veeramarni/Documents/development/workspace/projects/research/remix-federation/node_modules/[4m.pnpm[24m/@originjs+vite-plugin-federation@1.3.6/node_modules/[4m@originjs[24m/vite-plugin-federation/dist/index.mjs:760:29) {
+  errno: [33m-2[39m,
+  code: [32m'ENOENT'[39m,
+  syscall: [32m'stat'[39m,
+  path: [32m'/Users/veeramarni/Documents/development/workspace/projects/research/remix-federation/apps/host/node_modules/@remix-run/router'[39m
+}
+
+Node.js v20.16.0
+[41m[30m ELIFECYCLE [39m[49m [31mCommand failed with exit code 1.[39m

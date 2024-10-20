@@ -1,8 +1,9 @@
 import type { DataFunctionArgs } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import { remotes } from "app/utils/remotes";
+import Widget  from 'remoteApp/widget1';
 import { useEffect } from "react";
-import { fetchManifest, proxy, updateRoutes } from "remix-federation";
+import { fetchManifest, proxy, updateRoutes } from "../utils";
 
 export function loader({ request }: DataFunctionArgs) {
   // Proxy loader requests to the remote app
@@ -10,7 +11,8 @@ export function loader({ request }: DataFunctionArgs) {
   if (response) return response;
 
   // Fetch the remote app's route manifest as this routes loader data
-  return fetchManifest(remotes.remote1);
+  // return fetchManifest(remotes.remote1);
+  return {}
 }
 
 export function action({ request }: DataFunctionArgs) {
@@ -23,11 +25,12 @@ export default function Component() {
 
   // Loads the remote app's route manifest and then revalidates
   // the router to rerender the current url with the new routes.
-  useEffect(() => {
-    updateRoutes(manifest);
-  }, [manifest]);
+  // useEffect(() => {
+  //   updateRoutes(manifest);
+  // }, [manifest]);
 
-  return <div>Loading...</div>;
+  // return <div>Loading...</div>;
+  return <Widget />;
 }
 
 export { ErrorBoundary } from "../components/ErrorBoundary";

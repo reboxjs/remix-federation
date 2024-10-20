@@ -1,29 +1,34 @@
 import type { AppConfig } from "@remix-run/dev";
 import { vitePlugin as remix } from "@remix-run/dev";
+import federation from "@originjs/vite-plugin-federation";
 import { defineConfig } from "vite";
+import { installGlobals } from '@remix-run/node';
 import tsconfigPaths from "vite-tsconfig-paths";
-import remixFederation, { type FederationConfig } from "../../packages/remix-federation/src/vite";
+import { remotes } from './app/utils/remotes';
 
 const remixConfig: AppConfig = {
   ignoredRouteFiles: ["**/.*"],
 };
-
-const federationConfig: FederationConfig = {
+installGlobals();
+const federationConfig = {
   name: "host",
-  shared: {
-    react: { singleton: true },
-    "react-dom": { singleton: true },
-    "react/jsx-dev-runtime": { singleton: true },
-    "@remix-run/router": { singleton: true },
-    "@remix-run/react": { singleton: true },
-    "react-router": { singleton: true },
-    "react-router-dom": { singleton: true },
+  remotes: {
+    remoteApp: 'http://localhost:6173/assets/remoteEntry.js',
   },
+  shared: [
+    "react",
+    "react-dom",
+    "@remix-run/react"
+  ],
 };
 
 export default defineConfig({
   optimizeDeps: {
     include: ["react-dom/client", "react/jsx-dev-runtime"],
   },
-  plugins: [tsconfigPaths(), remix(remixConfig), remixFederation(federationConfig)],
+  build: {
+    target: 'esnext',
+    modulePreload: false,
+  },
+  plugins: [tsconfigPaths(), remix(remixConfig), federation(federationConfig)],
 });

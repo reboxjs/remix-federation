@@ -4,13 +4,18 @@ import { remotes } from "app/utils/remotes";
 import { useEffect } from "react";
 import { fetchManifest, proxy, updateRoutes } from "remix-federation";
 
-export function loader({ request }: DataFunctionArgs) {
+export async function loader({ request }: DataFunctionArgs) {
   // Proxy loader requests to the remote app
-  const response = proxy(remotes.remote1, request);
+  const response = await proxy(remotes.remote1, request); // Ensure proxy is awaited
   if (response) return response;
 
-  // Fetch the remote app's route manifest as this routes loader data
-  return fetchManifest(remotes.remote1);
+  // Fetch the remote app's route manifest asynchronously
+  const remoteManifest = await fetchManifest(remotes.remote1); // Ensure fetchManifest is awaited
+
+  console.log('---REMOTE MANIFEST', remoteManifest);
+
+  // Return the remote manifest data
+  return remoteManifest;
 }
 
 export function action({ request }: DataFunctionArgs) {
